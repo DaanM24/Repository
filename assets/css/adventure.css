@@ -1,12 +1,13 @@
 #game-container{
     position: absolute;
     width: 1000px;
-    left: 250px;
+    left: 0;
     right: 0;
     bottom: 0;
     top: 0;
     border: 2px solid white;
     background-color: black;
+    margin: 0 auto;
 }
 
 #title{
@@ -44,6 +45,7 @@ img{
     margin-left: 85px;
     text-align: center;
     margin-top: 25px;
+    padding-bottom: 10px;
 }
 
 body{
