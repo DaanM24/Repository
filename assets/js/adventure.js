@@ -5,7 +5,7 @@ var description = document.getElementById("description");;
 var title = document.getElementById("title");
 var death;
 var img = document.createElement("img");
-var extra;
+var augurk;
 
 menu();
 
@@ -18,6 +18,8 @@ function menu(){
     button3.style.display = 'none';
     
     button1.innerHTML = "Start game";
+
+    augurk = null;
 
     button1.onclick = function() {begin()};
 }
@@ -56,6 +58,11 @@ function trees(){
     description.innerHTML = "After you walk into the forest you start to feel less sure about where you're going. It's probably smart to go back.";
     button1.innerHTML = "Find your way back";
     button2.innerHTML = "Keep going";
+    if(augurk == true){
+        button3.style.display = 'inline';
+        button3.innerHTML = "Use the power of the augurk";
+        button3.onclick = function() {beyond()};
+    }
     button1.onclick = function() {forest()};
     button2.onclick = function() {gameover()};
     death = "As you walk further into the forest your body suddenly completes bursts apart, killing you instantly. <br> GAME OVER";
@@ -66,6 +73,7 @@ function cabin(){
     description.innerHTML = "The smoke doesn't seem to go away so it's easy to follow. The smoke seemed to be coming from a log cabin, because there is smoke that must mean there is someone else here. Are they dangerous? There's also a jar of pickles next to the door.";
     button1.innerHTML = "Knock on the door";
     button2.innerHTML = "Grab the jar";
+    button3.style.display = 'none';
     button1.onclick = function() {meeting()};
     button2.onclick = function() {gameover()};
     death = "The moment you grab the jar of pickled you disintegrate. <br> GAME OVER <br>Tip: Always ask for permission";
@@ -85,10 +93,10 @@ function meeting(){
 
 function picklescene(){
     description.innerHTML = "No";
-    button2.style.display = 'none';
+    button2.innerHTML = "Attack the man";
     button3.style.display = 'none';
     button1.onclick = function() {lost()};
-    extra = "You lost, kid?";
+    button2.onclick = function() {fight()};
 }
 
 function fight(){
@@ -99,12 +107,81 @@ function fight(){
     button2.innerHTML = "Hurl yourself at him";
     button1.onclick = function() {something()};
     button2.onclick = function() {gameover()};
+    button2.style.display = 'inline';
     death = "You got shot before you even had the chance. <br>GAME OVER";
 }
 
 function something(){
     button1.onclick = function() {gameover()};
+    button2.style.display = 'none';
     description.innerHTML = "You grab the first thing you see next to you which is...";
     button1.innerHTML = "Continue";
-    death = "...a stick. You throw it at the man, but it does nothing. You got shot multiple times and chest and bled out. <br> GAME OVER"
+    death = "...a stick. You throw it at the man, but it does nothing. You got shot multiple times in the chest and bled out. <br> GAME OVER"
+}
+
+function lost(){
+    description.innerHTML = "A lot of people end up here. Come inside.";
+    button1.innerHTML = "Go inside";
+    button2.innerHTML = "Refuse";
+    button3.style.display = 'none';
+    button1.onclick = function() {inside()};
+    button2.onclick = function() {fight()};
+}
+
+function inside(){
+    img.src = "assets/img/Inside.jpg";
+    description.innerHTML = "The room seems to be filled with foreign pictures <br>Man: Please make yourself at home. I'll get you something to drink.";
+    button2.innerHTML = "Can i have a jar of pickles instead?";
+    button1.innerHTML = "Ok thanks";
+    button3.innerHTML = "Leave"
+    button3.style.display = 'inline';
+    button1.onclick = function() {kidnap()};
+    button2.onclick = function() {pickles()};
+    button3.onclick = function() {cabin()};
+}
+
+function pickles(){
+    description.innerHTML = "Man: Sure. Here you go. <br>Jar of pickles obtained.";
+    button1.innerHTML = "Continue";
+    img.src = "assets/img/augurk_obtained.jpg";
+    augurk = true;
+    button2.style.display = 'none';
+    button3.style.display = 'none';
+    button1.onclick = function() {kidnap2()};
+}
+
+function kidnap(){
+    description.innerHTML = "The man hands you some tea. You take a sip and it has a weird taste. <br>You have been drugged.";
+    button1.innerHTML = "Continue";
+    button2.style.display = 'none';
+    button3.style.display = 'none';
+    button1.onclick = function() {cabinAlternate()};
+}
+
+function kidnap2(){
+    description.innerHTML = "In the midst of admiring your jar of pickles you get knocked out clean in the head";
+    button1.innerHTML = "Continue";
+    button2.style.display = 'none';
+    button3.style.display = 'none';
+    button1.onclick = function() {cabinAlternate()};
+}
+
+function cabinAlternate(){
+    img.src = "assets/img/Cabin.jpg";
+    description.innerHTML = "You wake up outside the cabin still kinda dazed. Let's hope he didn't do anything.";
+    button1.innerHTML = "Knock on the door again";
+    button2.style.display = 'inline';
+    button3.style.display = 'none';
+    button2.innerHTML = "Go back to the forest"
+    button1.onclick = function() {meeting2()};
+    button2.onclick = function() {forest()};
+}
+
+function meeting2(){
+    img.src = "assets/img/cabin3.jpg";
+    description.innerHTML = "Really? You're gonna go back? <br>Man: You again?"
+    button1.innerHTML = "Continue";
+    button1.onclick = function() {fight()};
+    button2.style.display = 'none';
+    button3.style.display = 'none';
 }
