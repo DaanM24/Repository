@@ -185,3 +185,12 @@ function meeting2(){
     button2.style.display = 'none';
     button3.style.display = 'none';
 }
+
+function beyond(){
+    img.src = "assets/img/supermarkt.jpeg";
+    description.innerHTML = "You used the jar of pickles and broke through the barrier to what seems like pickle heaven. It's beautiful. <br>You live in here happily forever after. <br>THE END";
+    button2.style.display = 'none';
+    button3.style.display = 'none';
+    button1.innerHTML = "Start over"
+    button1.onclick = function() {menu()};
+}
